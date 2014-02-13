@@ -1,0 +1,18 @@
+# Define Variables
+INPUT="../input/"
+OUTPUT="../output/"
+
+## Run an MD simulation to let the system equilibrate a second time
+
+# -e signals the output energy file for analysis
+# -s is the input tpr file
+# -o is the ouput trajectory file
+# -c is the coordinate file (important for adding more time to simulation)
+
+mdrun_mpi_d -v -s ${OUTPUT}${PROTEIN}_eq1.tpr -e ${OUTPUT}${PROTEIN}_eq1.edr -o ${OUTPUT}${PROTEIN}_eq1.trr -x ${OUTPUT}${PROTEIN}_eq1.xtc -c ${OUTPUT}${PROTEIN}_eq2.gro -g ${OUTPUT}${PROTEIN}_eq2.log
+
+cat <<EOF >> ../${PROTEIN}_log.pbs
+
+Successfully completed the second iteration of equilibration
+-----------------------------------------------------------------
+EOF

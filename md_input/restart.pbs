@@ -1,0 +1,21 @@
+# Define Variables
+INPUT="../input/"
+OUTPUT="../output/"
+I=$(expr ${IT} - 1 )
+
+
+## Run the energy minimization on the protein given
+# -v turns on verbose mode again
+# -s signals the input tpr file
+# -o is the the output trajectory file
+# -c signals the output coordinates file
+
+mdrun_mpi_d -v -plumed restart.dat -s ${OUTPUT}${PROTEIN}_${I}.tpr -e ${OUTPUT}${PROTEIN}_energy_${IT}.edr -o ${OUTPUT}${PROTEIN}_${IT}.trr -x ${OUTPUT}${PROTEIN}_${IT}.xtc -c ${OUTPUT}${PROTEIN}_${IT}.gro -g ${OUTPUT}${PROTEIN}_${IT}.log -cpo ${OUTPUT}${PROTEIN}_${IT}.cpt
+
+cp COLVAR COLVAR_${IT}
+
+cat <<EOF >> ../${PROTEIN}_log.pbs
+
+Successfully completed the ${IT} iteration of metadynamics.
+-----------------------------------------------------------------
+EOF

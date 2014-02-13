@@ -1,0 +1,18 @@
+# Define Variables
+INPUT="../input/"
+OUTPUT="../output/"
+
+## Run the energy minimization on the protein given
+# -v turns on verbose mode again
+# -s signals the input tpr file
+# -o is the the output trajectory file
+# -c signals the output coordinates file
+# -g log file
+
+mdrun_mpi_d -v -s ${OUTPUT}em.tpr -o ${OUTPUT}em.trr -c ${OUTPUT}afterem.gro -g ${OUTPUT}em.log
+
+cat <<EOF >> ../${PROTEIN}_log.pbs
+
+Successfully completed the energy minimization
+-----------------------------------------------------------------
+EOF

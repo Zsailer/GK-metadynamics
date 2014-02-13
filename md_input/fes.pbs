@@ -1,0 +1,11 @@
+# Define Variables
+INPUT="../input/"
+OUTPUT="../output/"
+
+## Run the energy minimization on the protein given
+# -v turns on verbose mode again
+# -s signals the input tpr file
+# -o is the the output trajectory file
+# -c signals the output coordinates file
+
+./sum_hills_mpi.x -file HILLS -out ${OUTPUT}fes_${PROTEIN}.dat -ndim 3 -ndw 1 2 -kt 0.6 
